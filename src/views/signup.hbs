@@ -1,0 +1,23 @@
+{{> header}}
+
+<form action="/admin/signup" method="post" class="form">
+    <div class="form__group">
+        <input type="email" name="email" id="user__email" class="form__input" placeholder="Email">
+    </div>
+    <div class="form__group">
+        <input type="text" name="role" id="user__role" class="form__input" placeholder="Role">
+    </div>
+    <div class="form__group">
+        <input type="text" name="password" id="user__password" class="form__input" placeholder="Password">
+    </div>
+    <div class="form__group">
+        <input type="text" name="password" id="user__password" class="form__input" placeholder="Password confirmation">
+    </div>
+    <div class="form__group">
+        <button type="submit" id="login__btn" class="btn btn--white btn--animated">Save</button>
+    </div>
+
+</form>
+
+
+{{> footer}}
