@@ -14,8 +14,15 @@ router.post('/admin/login', async (req, res)=>{
 
     const user = await User.findByCredentials(req.body.email, req.body.password);
 
+    //TODO: this is new. trying to throw an error when there is no user
+    if(!user){
+        console.log('Unable to login')
+    }else{
+        console.log('Logged in')
+    }
+
     try{
-        if(user.role === 'Admin'){    //TODO: replace this with the role saved on the users db
+        if(user.role === 'Admin'){
             res.render('tools.hbs', {
                 body:`
                 <a href="/quotes" class="btn btn--white btn--animated">Quotes Calculator</a>
@@ -71,6 +78,7 @@ router.post('/admin/signup', async (req, res)=>{
 
         try{
             await user.save();
+            //TODO: maybe add a message letting the user know that all went well
             res.render('admin', {layout: false});
         }catch (e){
             res.status(400).send(e);
@@ -82,10 +90,12 @@ router.post('/admin/signup', async (req, res)=>{
 });
 
 //forget password route
-router.get('/admin/password', (req, res)=>{
-    res.send('Under construction');
+router.get('/admin/password', async (req, res)=>{
     //TODO:
-    //handle the response
+    //1. send an email to the user with his password
+        //await and send the email
+    //2. render admin page
+    res.render('admin.hbs', {layout: false});
 });
 
 
